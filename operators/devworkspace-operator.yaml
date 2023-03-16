@@ -4,7 +4,7 @@ metadata:
   name: devworkspace-operator
   namespace: openshift-operators
 spec:
-  channel: stable 
+  channel: fast
   installPlanApproval: Automatic
   name: devworkspace-operator
   source: redhat-operators 

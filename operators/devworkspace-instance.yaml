@@ -1,0 +1,7 @@
+apiVersion: workspace.devfile.io/v1alpha2
+kind: DevWorkspace
+metadata:
+  name: devworkspace
+  namespace: openshift-operators
+spec:
+  started: true
