@@ -1,6 +1,6 @@
 #FROM ubi8/ubi:8.6
 #FROM registry.access.redhat.com/ubi8/python-39-minimal
-FROM registry.access.redhat.com/ubi8/s2i-core:1-339
+FROM registry.access.redhat.com/ubi8/s2i-core:1-391
 
 USER root
 
@@ -11,7 +11,7 @@ ENV PYTHON_VERSION=3.9 \
     LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     PIP_NO_CACHE_DIR=off \
-    TEKTON_VERSION=0.25.0
+    TEKTON_VERSION=0.29.1
 
 RUN INSTALL_PKGS="git \
   unzip \
@@ -43,7 +43,7 @@ RUN curl -o /usr/local/bin/kubectl -LO "https://dl.k8s.io/release/$(curl -L -s h
 
 # Install the Tekton CLI 'tkn'
 # see https://tekton.dev/docs/cli/
-RUN curl -LO "https://github.com/tektoncd/cli/releases/download/v0.25.0/tkn_${TEKTON_VERSION}_Linux_x86_64.tar.gz" && \
+RUN curl -LO "https://github.com/tektoncd/cli/releases/download/v${TEKTON_VERSION}/tkn_${TEKTON_VERSION}_Linux_x86_64.tar.gz" && \
   tar xvzf tkn_${TEKTON_VERSION}_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn && \
   chmod +x /usr/local/bin/tkn && \
   rm tkn_${TEKTON_VERSION}_Linux_x86_64.tar.gz
