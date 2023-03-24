@@ -9,7 +9,7 @@ spec:
   source:
     git:
       ref: main
-      uri: "https://github.com/redhat-capgemini-exchange/devsecops-setup"
+      uri: "https://github.com/redhat-partner-ecosystem/devsecops-setup.git"
     contextDir: image-builder
     type: Git
   strategy:
@@ -19,7 +19,8 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: openshift/gitops-cli:1.0.0
+      name: gitops-cli:1.0.0
+      namespace: openshift
   triggers:
     - type: ImageChange
       imageChange: {}
