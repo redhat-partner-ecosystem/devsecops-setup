@@ -20,7 +20,7 @@ spec:
     to:
       kind: ImageStreamTag
       name: gitops-cli:1.0.0
-      namespace: openshift
+      #namespace: openshift
   triggers:
     - type: ImageChange
       imageChange: {}
@@ -30,7 +30,7 @@ kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
   name: gitops-cli
-  namespace: openshift
+  #namespace: openshift
   annotations:
     description: base image for pipeline tasks
 spec:

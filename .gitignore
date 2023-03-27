@@ -1,11 +1,18 @@
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
-# local files & folders
-hack/
+hack/**
+secrets.yaml
+*_secrets.yaml
+*_secret.yaml
+*_configmap.yaml
 stuff.md
 
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python stuff
+__pycache__
