@@ -18,7 +18,8 @@ spec:
       type: string
   steps:
     - name: tag-image
-      image: image-registry.openshift-image-registry.svc:5000/openshift/gitops-cli:1.0.0
+      image: quay.io/openshift/origin-cli:latest
+      #image: image-registry.openshift-image-registry.svc:5000/openshift/gitops-cli:1.0.0
       script: |
         #!/usr/bin/env bash
 
