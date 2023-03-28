@@ -1,0 +1,33 @@
+kind: ClusterTask
+apiVersion: tekton.dev/v1beta1
+metadata:
+  name: tag-image-stream
+spec:
+  description: >-
+    Tag an image stream with a reference to the git revision and branch.
+  params:
+    - name: GIT_REVISION
+      type: string
+    - name: GIT_BRANCH_REF
+      type: string
+    - name: IMAGE_DIGEST
+      type: string
+    - name: IMAGE_NAME
+      type: string
+    - name: NAMESPACE
+      type: string
+  steps:
+    - name: tag-image
+      image: image-registry.openshift-image-registry.svc:5000/openshift/gitops-cli:1.0.0
+      script: |
+        #!/usr/bin/env bash
+
+        IFS="/" read -a branchref <<< "$(params.GIT_BRANCH_REF)"
+
+        echo "adding tag $(params.IMAGE_NAME):$(params.GIT_REVISION)"
+
+        oc tag "$(params.IMAGE_NAME)":latest "$(params.IMAGE_NAME)":"$(params.GIT_REVISION)" -n "$(params.NAMESPACE)"
+
+        echo "adding tag $(params.IMAGE_NAME):${branchref[-1]}"
+
+        oc tag "$(params.IMAGE_NAME)":latest "$(params.IMAGE_NAME)":"${branchref[-1]}" -n "$(params.NAMESPACE)"

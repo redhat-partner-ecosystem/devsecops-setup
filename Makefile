@@ -25,13 +25,10 @@ config-devspaces:
 	oc apply -f operators/openshift-devspaces-instance.yaml
 	oc apply -f operators/gitea-instance.yaml
 
-.PHONY: config-builder
-config-builder:
-	oc apply -f image-builder/builder.yaml
-
-.PHONY: config-roles
-config-roles:
+.PHONY: pipeline-tasks
+pipeline-tasks:
 	oc policy add-role-to-user system:image-builder \
 		system:serviceaccount:${BUILD_NAMESPACE}:builder \
 		--namespace=openshift
-
+	oc apply -f image-builder/builder.yaml
+	oc apply -f clustertasks/
